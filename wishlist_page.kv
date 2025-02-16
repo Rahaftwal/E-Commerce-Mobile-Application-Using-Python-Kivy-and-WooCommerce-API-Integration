@@ -1,0 +1,72 @@
+<WishlistPage>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        # Replace Label with MDLabel for better integration with KivyMD
+        MDLabel:
+            id: title_label
+            text: 'Wishlist'
+            size_hint_y: None
+            height: dp(50)
+            theme_text_color: 'Primary'  # Use theme color for better consistency
+            font_style: 'H6'  # Adjust font style
+            halign: 'center'  # Center the text horizontally
+            valign: 'middle'  # Center the text vertically
+            text_size: self.size  # Make sure the text fits inside the label's size
+
+        ScrollView:
+            size_hint: (1, None)
+            height: self.parent.height - dp(60)  # Adjust for footer height
+            BoxLayout:
+                id: items_layout
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height  # Adjust to content height
+                spacing: dp(10)
+                padding: dp(10)
+
+        MDBoxLayout:
+            size_hint_y: None
+            md_bg_color: .9, .9, .9, 1
+            height: dp(60)
+            padding: [0, 0, 0, 15]
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'home'
+                    on_release: root.change_screen('shop')
+                MDLabel:
+                    text: 'Home'
+                    valign: "center"
+                    halign: "center"
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'cards-heart'
+                    on_release: root.change_screen('wishlist')
+                MDLabel:
+                    text: 'Favorite'
+                    valign: "center"
+                    halign: "center"
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'cart'
+                    on_release: root.change_screen('cart')
+                MDLabel:
+                    text: 'Cart'
+                    valign: "center"
+                    halign: "center"
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'account'
+                    on_release: root.change_screen('my_account')
+                MDLabel:
+                    text: 'Profile'
+                    valign: "center"
+                    halign: "center"

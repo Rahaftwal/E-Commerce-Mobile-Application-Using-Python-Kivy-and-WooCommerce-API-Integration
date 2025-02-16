@@ -1,0 +1,95 @@
+<ProductDetailsPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 0
+        spacing: 0
+
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 1  # Light gray background
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        # App Bar - Aligned design
+        MDBoxLayout:
+            adaptive_height: True
+            md_bg_color: 0, 0.6, 0.6, 1  # Teal color
+            padding: [dp(16), dp(8)]
+            spacing: dp(8)
+            size_hint_y: None
+            height: dp(56)
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                icon_size: dp(24)  # Adjusted icon size
+                size_hint: (None, None)
+                size: (dp(40), dp(40))
+                pos_hint: {"center_y": .5}
+                on_release: root.go_back()
+
+            MDLabel:
+                text: "Details"
+                font_style: "H6"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_y": .5}
+                font_size: '20sp'  # Adjusted font size
+
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                id: details_layout
+                orientation: 'vertical'
+                spacing: 0
+                padding: 0
+                size_hint_y: None
+                height: self.minimum_height
+
+        # Bottom Actions Bar
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(80)
+            md_bg_color: 1, 1, 1, 1
+            elevation: 8
+            padding: [dp(16), dp(16)]
+            spacing: dp(16)
+
+            MDFillRoundFlatButton:
+                text: "Add to Cart"
+                size_hint_x: 0.7
+                md_bg_color: 0, 0.6, 0.6, 1
+                text_color: 1, 1, 1, 1
+                on_release: root.add_to_cart(self)
+
+            MDIconButton:
+                icon: "heart-outline"
+                theme_icon_color: "Custom"
+                icon_color: 0, 0.6, 0.6, 1
+                pos_hint: {"center_y": .5}
+                on_release: root.add_to_wishlist(self)
+
+<QuantitySelector@MDBoxLayout>:
+    spacing: dp(10)
+    adaptive_width: True
+
+    MDIconButton:
+        icon: 'minus'
+        on_release: root.decrease_quantity()
+
+    MDLabel:
+        id: quantity_label
+        text: root.quantity
+        halign: 'center'
+        valign: 'center'
+
+    MDIconButton:
+        icon: 'plus'
+        on_release: root.increase_quantity()
+
+<VariationButton@MDFlatButton>:
+    text_color: (0, 0, 0, 1)
+    height: dp(40)

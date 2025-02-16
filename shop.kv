@@ -1,0 +1,126 @@
+<ShopPage>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 0
+        spacing: 0
+
+        canvas.before:
+            Color:
+                rgba: 0.96, 0.96, 0.96, 1  # Light gray background
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        # Fixed App Bar - Single line with Teal color
+        MDBoxLayout:
+            adaptive_height: True
+            md_bg_color: 0, 0.6, 0.6, 1  # Teal color
+            padding: [dp(16), dp(8)]
+            spacing: dp(8)
+            size_hint_y: None
+            height: dp(56)
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                spacing: 0
+                
+                MDLabel:
+                    text: "Discover"
+                    font_style: "H6"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    size_hint_y: None
+                    height: dp(40)
+                    pos_hint: {"center_y": .5}
+                
+                MDLabel:
+                    text: "Find your perfect product"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 0.7
+                    font_style: "Caption"
+                    size_hint_y: None
+                    height: dp(16)
+
+            Widget:
+                size_hint_x: 0.6
+
+            MDIconButton:
+                icon: "refresh"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_y": .5}
+                on_release: root.refresh_products()
+
+        # Scroll View with Products
+        ScrollView:
+            size_hint: 1, 1
+            do_scroll_x: False
+
+            MDGridLayout:
+                id: product_grid
+                cols: 2
+                spacing: dp(8)
+                size_hint_y: None
+                padding: [dp(8), dp(8), dp(8), dp(8)]
+                height: self.minimum_height
+
+        # Bottom Navigation Bar
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(65)
+            md_bg_color: 1, 1, 1, 1
+            elevation: 8
+            padding: [0, dp(5), 0, dp(5)]
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'home'
+                    theme_icon_color: "Custom"
+                    icon_color: 0, 0.6, 0.6, 1  # Changed to Teal
+                    on_release: root.change_screen('shop')
+                MDLabel:
+                    text: 'Home'
+                    theme_text_color: "Custom"
+                    text_color: 0, 0.6, 0.6, 1  # Changed to Teal
+                    valign: "center"
+                    halign: "center"
+                    font_style: "Caption"
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'cards-heart'
+                    on_release: root.change_screen('wishlist')
+                MDLabel:
+                    text: 'Favorite'
+                    valign: "center"
+                    halign: "center"
+                    font_style: "Caption"
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'cart'
+                    on_release: root.change_screen('cart')
+                MDLabel:
+                    text: 'Cart'
+                    valign: "center"
+                    halign: "center"
+                    font_style: "Caption"
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDIconButton:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    icon: 'account'
+                    on_release: root.change_screen('my_account')
+                MDLabel:
+                    text: 'Profile'
+                    valign: "center"
+                    halign: "center"
+                    font_style: "Caption"
