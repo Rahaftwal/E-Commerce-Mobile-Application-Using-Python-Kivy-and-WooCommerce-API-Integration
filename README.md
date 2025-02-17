@@ -69,4 +69,4 @@ CONSUMER_SECRET = "cs_1234567890abcdef"
 
 ---
 
-### Developer: **Rahaf**💙
+Designed and developed by **Rahaf Twal**💙
